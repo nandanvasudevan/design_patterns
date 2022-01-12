@@ -22,7 +22,10 @@ public:
 		}
 	}
 
-	virtual std::string_view verb() = 0;
+	virtual std::string_view verb()
+	{
+		return sFlying;
+	}
 
 protected:
 	std::string sFlying;

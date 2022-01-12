@@ -14,8 +14,28 @@ main() {
  */
 void
 strategy_pattern() {
-	CDuck duck;
 
-	duck.performFly();
-	duck.performTalk();
+	// Default strategy
+	{
+		CDuck duck;
+
+		duck.performFly();
+		duck.performTalk();
+	}
+
+	// Strategy for creating a duck that cannot fly or talk
+	{
+		CDuck duck_cannotFly(CFlyAttribute(false),CTalkAttribute(true));
+
+		duck_cannotFly.performFly();
+		duck_cannotFly.performTalk();
+	}
+
+	// Strategy for creating a duck that can fly with its wings and quack.
+	{
+		CDuck duck_canFlyAndQuack(CFlyWithWings(true), CQuackAttribute(true));
+
+		duck_canFlyAndQuack.performFly();
+		duck_canFlyAndQuack.performTalk();
+	}
 }

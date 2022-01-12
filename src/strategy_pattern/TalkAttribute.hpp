@@ -21,13 +21,16 @@ public:
 		}
 	}
 
-	virtual std::string_view verb() = 0;
+	virtual std::string_view verb()
+	{
+		return sTalking;
+	}
 
 protected:
 	std::string sTalking;
 };
 
-class CQuackAttribute : CTalkAttribute {
+class CQuackAttribute : public CTalkAttribute {
 public:
 	explicit CQuackAttribute(const bool bCanQuack) :
 			CTalkAttribute(bCanQuack) {

@@ -23,12 +23,18 @@ concept can_be_attribute = requires(T t) { t.verb(); };
  */
 template<typename T> requires can_be_attribute<T>
 class CAttribute {
-	T attribute = T(false);
+	T attribute;
 	std::string_view sSpecies;
 public:
-	CAttribute(std::string_view _sSpecies, const bool bCanPerform) {
-		attribute = T(bCanPerform);
-		sSpecies = _sSpecies;
+	CAttribute(std::string_view _sSpecies, const bool bCanPerform) :
+			attribute(bCanPerform),
+			sSpecies(_sSpecies) {
+	}
+
+	CAttribute(std::string_view _sSpecies, T _attribute) :
+			attribute(std::move(_attribute)),
+			sSpecies(_sSpecies) {
+
 	}
 
 	//! Performs the action specified by the attribute.

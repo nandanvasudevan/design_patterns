@@ -14,13 +14,21 @@
 
 //! A duck can quack and fly!
 class CDuck : public CBird {
-	CAttribute<CFlyWithWings> flyAttribute;
-	CAttribute<CQuackAttribute> quackAttribute;
+	CAttribute<CFlyAttribute> flyAttribute;
+	CAttribute<CTalkAttribute> quackAttribute;
 public:
 	CDuck() :
 			CBird("Duck"),
-			flyAttribute(CAttribute<CFlyWithWings>(sSpecies, true)),
-			quackAttribute(CAttribute<CQuackAttribute>(sSpecies, true)) {
+			flyAttribute(sSpecies, true),
+			quackAttribute(sSpecies, true) {
+	}
+
+	CDuck(const CFlyAttribute& flying, const CTalkAttribute& talking):
+			CBird("Duck"),
+			flyAttribute(sSpecies, flying),
+			quackAttribute(sSpecies, talking)
+	{
+
 	}
 
 public:
