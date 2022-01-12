@@ -11,11 +11,17 @@
 #include "fmt/core.h"
 #include <string_view>
 
-template <typename T>
-concept can_be_attribute = requires (T t) {t.verb(); };
+//! Ensures the existence of a `verb()` function
+template<typename T>
+concept can_be_attribute = requires(T t) { t.verb(); };
 
-template <typename T>
-requires can_be_attribute<T>
+/**
+ * @brief Create a new attribute
+ * @tparam T A specific attribute type
+ *
+ * Create an attribute based on a type.
+ */
+template<typename T> requires can_be_attribute<T>
 class CAttribute {
 	T attribute = T(false);
 	std::string_view sSpecies;
@@ -25,39 +31,9 @@ public:
 		sSpecies = _sSpecies;
 	}
 
-	void perform() {
+	//! Performs the action specified by the attribute.
+	constexpr void perform() {
 		fmt::print("{} {}\n", sSpecies, attribute.verb());
-	}
-};
-
-class CFlyAttribute {
-public:
-	explicit CFlyAttribute(const bool bCanFly) {
-		if (bCanFly) {
-			sFlying = "can fly";
-		} else {
-			sFlying = "cannot fly";
-		}
-	}
-
-	virtual std::string_view verb() = 0;
-
-protected:
-	std::string sFlying;
-};
-
-class CFlyWithWings: public CFlyAttribute
-{
-public:
-	CFlyWithWings(const bool bCanFly):
-			CFlyAttribute(bCanFly)
-	{
-		sFlying += " with wings";
-	}
-
-	std::string_view verb() override
-	{
-		return sFlying;
 	}
 };
 

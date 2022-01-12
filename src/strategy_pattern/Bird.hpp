@@ -13,17 +13,29 @@
 
 #include "Attribute.hpp"
 
+/**
+ * @brief Make birds!
+ */
 class CBird {
 public:
+
+	/**
+	 * @brief Create a new bird.
+	 * @param sSpeciesName A name to know it by.
+	 */
 	CBird(std::string_view sSpeciesName) {
 		sSpecies = sSpeciesName;
 	}
 
-	virtual void performQuack() = 0;
+	//! Try to make the bird talk
+	virtual void performTalk() = 0;
 
+	//! Try to make the bird fly
 	virtual void performFly() = 0;
-//	virtual void performRun() = 0;
+
 protected:
+
+	//! The species it belongs to.
 	std::string sSpecies;
 };
 

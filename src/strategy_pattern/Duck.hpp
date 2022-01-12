@@ -10,7 +10,9 @@
 
 #include "Bird.hpp"
 #include "TalkAttribute.hpp"
+#include "FlyAttribute.hpp"
 
+//! A duck can quack and fly!
 class CDuck : public CBird {
 	CAttribute<CFlyWithWings> flyAttribute;
 	CAttribute<CQuackAttribute> quackAttribute;
@@ -18,16 +20,17 @@ public:
 	CDuck() :
 			CBird("Duck"),
 			flyAttribute(CAttribute<CFlyWithWings>(sSpecies, true)),
-			quackAttribute(CAttribute<CQuackAttribute>(sSpecies, true))
-	{
+			quackAttribute(CAttribute<CQuackAttribute>(sSpecies, true)) {
 	}
 
 public:
 
-	void performQuack() override {
+	//! Make the duck quack
+	void performTalk() override {
 		quackAttribute.perform();
 	}
 
+	//! Make the duck run
 	void performFly() override {
 		flyAttribute.perform();
 	}

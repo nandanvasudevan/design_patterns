@@ -27,17 +27,14 @@ protected:
 	std::string sTalking;
 };
 
-class CQuackAttribute: CTalkAttribute
-{
+class CQuackAttribute : CTalkAttribute {
 public:
-	explicit CQuackAttribute(const bool bCanQuack):
-			CTalkAttribute(bCanQuack)
-	{
+	explicit CQuackAttribute(const bool bCanQuack) :
+			CTalkAttribute(bCanQuack) {
 		sTalking += " \"quack quack\"";
 	}
 
-	std::string_view verb() override
-	{
+	std::string_view verb() override {
 		return sTalking;
 	}
 };
